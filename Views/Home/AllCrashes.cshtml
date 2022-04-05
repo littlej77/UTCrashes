@@ -5,20 +5,32 @@
 
 @model List<Crash>
 
-<div class="row m-1 p-1">
+    <div class="float-right">
+        <h3>Crash Severity Rating:</h3>
+        <ol>
+            <li>no injury</li>
+            <li>possible injury</li>
+            <li>suspected minor injury</li>
+            <li>suspected serious injury</li>
+            <li>fatal</li>
+            <br />
+        </ol>
+    </div>
+    <div class="row m-1 p-1">
 
-    <div id="county" class="col-3">
-        <vc:county></vc:county>
+        <div id="county" class="col-3">
+            <vc:county></vc:county>
+        </div>
+
+        <div class="col-9">
+            <h1>Crashes</h1>
+
+            @foreach (var c in Model)
+            {
+                <partial name="CrashSummary" model="c" />
+            }
+        </div>
+
     </div>
 
-    <div class="col-9">
-        <h1>Crashes</h1>
-
-        @foreach (var c in Model)
-        {
-            <partial name="CrashSummary" model="c" />
-        }
-    </div>
-
-</div>
-
+    1=no injury, 2=possible injury, 3=suspected minor injury, 4=suspected serious injury, and 5=fatal

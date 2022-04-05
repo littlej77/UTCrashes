@@ -38,6 +38,20 @@ namespace UTCrashes.Controllers
             return View(crashes);
         }
 
+        public IActionResult CrashMaps()
+        {
+            return View();
+        }
+
+        public IActionResult CrashCalc()
+        {
+            return View();
+        }
+
+        public IActionResult Solutions()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
