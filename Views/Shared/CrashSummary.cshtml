@@ -6,12 +6,112 @@
 <div class="card card-outline-primary m-1 p-1">
     <div class="bg-faded p-1">
         <h4>
-            Crash# @Model.CRASH_ID at @Model.MAIN_ROAD_NAME
+            Crash# @Model.CRASH_ID
             <span class="badge badge-pill badge-primary" style="float:right">
                 <small>SEVERITY: @Model.CRASH_SEVERITY_ID</small>
             </span>
         </h4>
     </div>
-    <div class="card-text p-1">COUNTY: @Model.COUNTY.COUNTY_NAME</div>
-
+    <div class="card-text p-1">LOCATION: @Model.MAIN_ROAD_NAME, @Model.CITY, @Model.COUNTY.COUNTY_NAME</div>
+    <div class="card-text p-1">@Model.Dates at @Model.Times</div>
+    <div class="card-text p-1">
+        <h6>Crash Features</h6>
+        <ul>
+            @*check if work zone related is true*@
+            @if (Model.WORK_ZONE_RELATED == 1)
+            {
+                <li>Work Zone Related</li>
+            }
+            @*check if pedestrian involved is true*@
+            @if (Model.PEDESTRIAN_INVOLVED == 1)
+            {
+                <li>Pedestrian involved</li>
+            }
+            @*check if bicyclist involved is true*@
+            @if (Model.BICYCLIST_INVOLVED == 1)
+            {
+                <li>Bicyclist involved</li>
+            }
+            @*check if motorcycle involed is true*@
+            @if (Model.MOTORCYCLE_INVOLVED == 1)
+            {
+                <li>Motorcycle involved</li>
+            }
+            @*check if improper restraint is true*@
+            @if (Model.IMPROPER_RESTRAINT == 1)
+            {
+                <li>Improper restraint</li>
+            }
+            @*check if unrestrained is true*@
+            @if (Model.UNRESTRAINED == 1)
+            {
+                <li>Unrestrained</li>
+            }
+            @*check if dui is true*@
+            @if (Model.DUI == 1)
+            {
+                <li>DUI</li>
+            }
+            @*check if intersection related is true*@
+            @if (Model.INTERSECTION_RELATED == 1)
+            {
+                <li>Intersection Related</li>
+            }
+            @*check if wild animal related is true*@
+            @if (Model.WILD_ANIMAL_RELATED == 1)
+            {
+                <li>Wild animal related</li>
+            }
+            @*check if domestic animal related is true*@
+            @if (Model.DOMESTIC_ANIMAL_RELATED == 1)
+            {
+                <li>Domestic animal related</li>
+            }
+            @*check if overturn rollover is true*@
+            @if (Model.OVERTURN_ROLLOVER == 1)
+            {
+                <li>Overturn rollover</li>
+            }
+            @*check if commercial motor vehical involved is true*@
+            @if (Model.COMMERCIAL_MOTOR_VEH_INVOLVED == 1)
+            {
+                <li>Commercial motor vehical involved</li>
+            }
+            @*check if teenage driver involved is true*@
+            @if (Model.TEENAGE_DRIVER_INVOLVED == 1)
+            {
+                <li>Teenage driver involved</li>
+            }
+            @*check if older driver involved is true*@
+            @if (Model.OLDER_DRIVER_INVOLVED == 1)
+            {
+                <li>Older driver involved</li>
+            }
+            @*check if night dark condition is true*@
+            @if (Model.NIGHT_DARK_CONDITION == 1)
+            {
+                <li>Dark, night conditions</li>
+            }
+            @*check if single vehicle is true*@
+            @if (Model.SINGLE_VEHICLE == 1)
+            {
+                <li>Single vehicle</li>
+            }
+            @*check if distracted driving is true*@
+            @if (Model.DISTRACTED_DRIVING == 1)
+            {
+                <li>Distracted driving</li>
+            }
+            @*check if drowsy driving is true*@
+            @if (Model.DROWSY_DRIVING == 1)
+            {
+                <li>Drowsy driving</li>
+            }
+            @*check if roadway departure is true*@
+            @if (Model.ROADWAY_DEPARTURE == 1)
+            {
+                <li>Roadway departure</li>
+            }
+        </ul>
+    </div>
 </div>
