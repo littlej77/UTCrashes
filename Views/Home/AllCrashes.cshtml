@@ -3,7 +3,7 @@
     ViewData["Title"] = "All Crashes";
 }
 
-@model List<Crash>
+@model CrashesViewModel
 
     <div class="float-right">
         <h3>Crash Severity Rating:</h3>
@@ -25,12 +25,12 @@
         <div class="col-9">
             <h1>Crashes</h1>
 
-            @foreach (var c in Model)
-            {
-                <partial name="CrashSummary" model="c" />
-            }
-        </div>
-
+        @foreach (var c in Model.crashes)
+        {
+            <partial name="CrashSummary" model="c" />
+        }
     </div>
+
+</div>
 
     1=no injury, 2=possible injury, 3=suspected minor injury, 4=suspected serious injury, and 5=fatal

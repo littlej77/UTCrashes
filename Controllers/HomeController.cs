@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using UTCrashes.Models;
+using UTCrashes.Models.ViewModels;
 
 namespace UTCrashes.Controllers
 {
@@ -28,14 +29,37 @@ namespace UTCrashes.Controllers
             return View();
         }
 
-        public IActionResult AllCrashes(string county)
+        public IActionResult AllCrashes(string county, int pageNum=1)
         {
-            var crashes = _repo.crashes
-                .Where(x => x.COUNTY.COUNTY_NAME == county || county == null)
-                .Include(x => x.COUNTY)
-                .ToList();
+            int pageSize = 30;
 
-            return View(crashes);
+            ViewBag.Counties = _repo.Counties.OrderBy(x => x.COUNTY_NAME).ToList();
+
+            var x = new CrashesViewModel
+            {
+                crashes = _repo.crashes
+                .Where(x => x.COUNTY.COUNTY_NAME == county || county == null)
+                .OrderBy(x => x.CRASH_ID)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumCrashes =
+                        (county == null
+                            ? _repo.crashes.Count()
+                            : _repo.crashes.Where(x => x.COUNTY.COUNTY_NAME == county).Count()),
+                    CrashesPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+
+            //var crashes = _repo.crashes
+            //    .Where(x => x.COUNTY.COUNTY_NAME == county || county == null)
+            //    .Include(x => x.COUNTY)
+            //    .ToList();
+
+            return View(x);
         }
 
         public IActionResult CrashMaps()

@@ -73,13 +73,23 @@ namespace UTCrashes
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    "countypage",
+                    "{county}/Page{pageNum}",
+                    new { Controller = "Home", action = "AllCrashes" });
+
+                endpoints.MapControllerRoute(
+                    "Paging",
+                    "page{pageNum}",
+                    new { Controller = "Home", action = "AllCrashes", pageNum = 1 });
+
+                endpoints.MapControllerRoute(
                     "county",
                     "{county}",
                     new { Controller = "Home", action = "AllCrashes", pageNum = 1 });
 
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapDefaultControllerRoute();
 
