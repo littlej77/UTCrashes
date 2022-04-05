@@ -23,16 +23,21 @@ namespace UTCrashes.Controllers
         }
 
 
-        public IActionResult Index(string county)
+        public IActionResult Index()
         {
+            return View();
+        }
 
+        public IActionResult AllCrashes(string county)
+        {
             var crashes = _repo.crashes
                 .Where(x => x.COUNTY.COUNTY_NAME == county || county == null)
-                .Include( x => x.COUNTY)
+                .Include(x => x.COUNTY)
                 .ToList();
 
             return View(crashes);
         }
+
 
         public IActionResult Privacy()
         {

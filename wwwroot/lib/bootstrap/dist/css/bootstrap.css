@@ -63,6 +63,16 @@ body {
   background-color: #fff;
 }
 
+.bgimage {
+    background-image: url('../../../../img/slcc.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-size: cover;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }

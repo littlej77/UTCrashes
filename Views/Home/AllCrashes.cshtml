@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "All Crashes";
+}
+
+@model List<Crash>
+
+<div class="row m-1 p-1">
+
+    <div id="county" class="col-3">
+        <vc:county></vc:county>
+    </div>
+
+    <div class="col-9">
+        <h1>Crashes</h1>
+
+        @foreach (var c in Model)
+        {
+            <partial name="CrashSummary" model="c" />
+        }
+    </div>
+
+</div>
+

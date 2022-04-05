@@ -75,7 +75,7 @@ namespace UTCrashes
                 endpoints.MapControllerRoute(
                     "county",
                     "{county}",
-                    new { Controller = "Home", action = "Index", pageNum = 1 });
+                    new { Controller = "Home", action = "AllCrashes", pageNum = 1 });
 
                 endpoints.MapControllerRoute(
                     name: "default",
