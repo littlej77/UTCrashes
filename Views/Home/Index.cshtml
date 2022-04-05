@@ -5,10 +5,15 @@
 @model List<Crash>
 
 <h1> Crashes </h1>
-<ul>
+@*<ul>
 
     @foreach (var c in Model)
     {
         <li>@c.CRASH_ID -- @c.COUNTY.COUNTY_NAME</li>
     }
-</ul>
+</ul>*@
+
+@foreach (var c in Model)
+{
+    <partial name="CrashSummary" model="c" />
+}
