@@ -62,7 +62,10 @@ body {
   text-align: left;
   background-color: #fff;
 }
-
+.common{
+    background-color: floralwhite;
+    border: solid 2px dotted;
+}
 .bgimage {
     background-image: url('../../../../img/slcc.jpg');
     background-repeat: no-repeat;
