@@ -18,8 +18,12 @@
 
   <ItemGroup>
     <None Remove="Components\" />
+    <None Remove="Views\Shared\Components\" />
+    <None Remove="Views\Shared\Components\County\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\County\" />
   </ItemGroup>
 </Project>

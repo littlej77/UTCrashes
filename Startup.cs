@@ -73,8 +73,16 @@ namespace UTCrashes
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    "county",
+                    "{county}",
+                    new { Controller = "Home", action = "Index", pageNum = 1 });
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapDefaultControllerRoute();
+
                 endpoints.MapRazorPages();
             });
         }
