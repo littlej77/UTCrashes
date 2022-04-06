@@ -5,33 +5,42 @@
 
 @model CrashesViewModel
 
-    <div class="float-right">
-        <h3>Crash Severity Rating:</h3>
-        <ol>
-            <li>no injury</li>
-            <li>possible injury</li>
-            <li>suspected minor injury</li>
-            <li>suspected serious injury</li>
-            <li>fatal</li>
-        </ol>
+<div class="float-right">
+    <h3>Add a new crash</h3>
+
+    <a asp-controller="Home" class="btn btn-info btn-sm d-flex justify-content-center" asp-action="AddCrash">Add Crash 🚙</a>
+
+    <h3>Crash Severity Rating:</h3>
+    <ol>
+        <li>no injury</li>
+        <li>possible injury</li>
+        <li>suspected minor injury</li>
+        <li>suspected serious injury</li>
+        <li>fatal</li>
+    </ol>
+</div>
+
+<div class="row m-1 p-1">
+
+    @*add county filtering view component*@
+    <div id="county" class="col-3">
+        <vc:county></vc:county>
     </div>
-    <div class="row m-1 p-1">
 
-        <div id="county" class="col-3">
-            <vc:county></vc:county>
-        </div>
+    <div class="col-9">
+        <h1>Crashes</h1>
 
-        <div class="col-9">
-            <h1>Crashes</h1>
-
+        @*loop through each crash and call the crash summary item*@
         @foreach (var c in Model.crashes)
         {
             <partial name="CrashSummary" model="c" />
         }
     </div>
 
-        <div page-blah="@Model.PageInfo" page-action="AllCrashes" page-class="btn"
-             page-class-normal="btn-outline-dark" page-class-selected="btn-primary"
-             page-classes-enabled="true" class="btn-group pull-right m-1"></div>
+    @*build pagination*@
+    <div page-blah="@Model.PageInfo" page-action="AllCrashes" page-class="btn"
+            page-class-normal="btn-outline-dark" page-class-selected="btn-primary"
+            page-classes-enabled="true" class="btn-group pull-right m-1">
+    </div>
 
 </div>

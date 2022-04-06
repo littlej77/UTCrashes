@@ -30,12 +30,10 @@ namespace UTCrashes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // default connection
+            // default connection... database for identity stuff
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-
-
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>() // adding roles
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -54,11 +52,12 @@ namespace UTCrashes
                 );
             });
 
+            // crashes database connection
             services.AddDbContext<CrashesDbContext>(options =>
            {
                options.UseMySql(Configuration["ConnectionStrings:UtahCrashesConnection"]);
            });
-
+            // invoke the repository method
             services.AddScoped<ICrashesRepository, EFCrashesRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>

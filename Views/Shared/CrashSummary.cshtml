@@ -10,6 +10,8 @@
             <span class="badge badge-pill badge-primary" style="float:right">
                 <small>SEVERITY: @Model.CRASH_SEVERITY_ID</small>
             </span>
+            <small><a asp-controller="Home" class="btn btn-info btn-sm d-flex justify-content-center" asp-action="EditCrash" asp-route-crashid="@Model.CRASH_ID">🔨 Edit</a></small>
+            <small><a asp-controller="Home" class="btn btn-info btn-sm d-flex justify-content-center" asp-action="DeleteCrash" asp-route-crashid="@Model.CRASH_ID">🗑️ Delete</a></small>
         </h4>
     </div>
     <div class="card-text p-1">LOCATION: @Model.MAIN_ROAD_NAME, @Model.CITY, @Model.COUNTY.COUNTY_NAME</div>

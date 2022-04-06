@@ -10,7 +10,7 @@ using UTCrashes.Models.ViewModels;
 namespace UTCrashes.Infrastructure
 {
     [HtmlTargetElement("div", Attributes = "page-blah")]
-    public class PaginationTagHelper : TagHelper
+    public class PaginationTagHelper : TagHelper // pagination math wooohooo
     {
         // Dynamically create the page links for us
         private IUrlHelperFactory uhf;

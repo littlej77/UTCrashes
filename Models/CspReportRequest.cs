@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-
 //THIS IS FOR THE CONTENT SECURITY POLICY HEADER
 namespace UTCrashes.Models
 {

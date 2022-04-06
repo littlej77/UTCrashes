@@ -10,10 +10,8 @@ namespace UTCrashes.Models
     {
         public CrashesDbContext(DbContextOptions<CrashesDbContext> options): base(options)
         {
-
-
         }
-
+        
         public DbSet<Crash> crashes { get; set; }
         public DbSet<County> Counties { get; set; }
     }

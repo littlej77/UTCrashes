@@ -1,0 +1,179 @@
+﻿@{
+    ViewData["Title"] = "Edit Crash";
+}
+
+@model UTCrashes.Models.Crash
+
+<div>
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="ROUTE">ROUTE:</label>
+            <input asp-for="ROUTE" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="MILEPOINT">MILEPOINT:</label>
+            <input asp-for="MILEPOINT" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="MAIN_ROAD_NAME">MAIN ROAD NAME:</label>
+            <input asp-for="MAIN_ROAD_NAME" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="CITY">CITY:</label>
+            <input asp-for="CITY" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="COUNTY_ID">COUNTY:</label>
+            <select asp-for="COUNTY_ID">
+                <option value="">SELECT A COUNTY</option>
+                @foreach (County c in ViewBag.Counties)
+                {
+                    <option value="@c.COUNTY_ID">@c.COUNTY_NAME</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="CRASH_SEVERITY_ID">CRASH SEVERITY:</label>
+            <input asp-for="CRASH_SEVERITY_ID" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="WORK_ZONE_RELATED">WORK ZONE RELATED (TRUE/FALSE):</label>
+            <select asp-for="WORK_ZONE_RELATED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="PEDESTRIAN_INVOLVED">PEDESTRIAN INVOLVED (TRUE/FALSE):</label>
+            <select asp-for="PEDESTRIAN_INVOLVED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="BICYCLIST_INVOLVED">BICYCLIST INVOLVED (TRUE/FALSE):</label>
+            <select asp-for="BICYCLIST_INVOLVED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="MOTORCYCLE_INVOLVED">MOTORCYCLE INVOLVED (TRUE/FALSE):</label>
+            <select asp-for="MOTORCYCLE_INVOLVED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="IMPROPER_RESTRAINT">IMPROPER RESTRAINT (TRUE/FALSE):</label>
+            <select asp-for="IMPROPER_RESTRAINT">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="UNRESTRAINED">UNRESTRAINED (TRUE/FALSE):</label>
+            <select asp-for="UNRESTRAINED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="DUI">DUI (TRUE/FALSE):</label>
+            <select asp-for="DUI">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="INTERSECTION_RELATED">INTERSECTION RELATED (TRUE/FALSE):</label>
+            <select asp-for="INTERSECTION_RELATED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="WILD_ANIMAL_RELATED">WILD ANIMAL RELATED (TRUE/FALSE):</label>
+            <select asp-for="WILD_ANIMAL_RELATED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="DOMESTIC_ANIMAL_RELATED">DOMESTIC ANIMAL RELATED (TRUE/FALSE):</label>
+            <select asp-for="DOMESTIC_ANIMAL_RELATED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="OVERTURN_ROLLOVER">OVERTURN ROLLOVER (TRUE/FALSE):</label>
+            <select asp-for="OVERTURN_ROLLOVER">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="COMMERCIAL_MOTOR_VEH_INVOLVED">COMMERCIAL MOTOR VEHICLE INVOLVED (TRUE/FALSE):</label>
+            <select asp-for="COMMERCIAL_MOTOR_VEH_INVOLVED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="TEENAGE_DRIVER_INVOLVED">TEENAGE DRIVER INVOLVED (TRUE/FALSE):</label>
+            <select asp-for="TEENAGE_DRIVER_INVOLVED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="OLDER_DRIVER_INVOLVED">OLDER DRIVER INVOLVED (TRUE/FALSE):</label>
+            <select asp-for="OLDER_DRIVER_INVOLVED">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="NIGHT_DARK_CONDITION">NIGHT DARK CONDITION (TRUE/FALSE):</label>
+            <select asp-for="NIGHT_DARK_CONDITION">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="SINGLE_VEHICLE">SINGLE VEHICLE (TRUE/FALSE):</label>
+            <select asp-for="SINGLE_VEHICLE">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="DISTRACTED_DRIVING">DISTRACTED DRIVING (TRUE/FALSE):</label>
+            <select asp-for="DISTRACTED_DRIVING">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="DROWSY_DRIVING">DROWSY DRIVING (TRUE/FALSE):</label>
+            <select asp-for="DROWSY_DRIVING">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="ROADWAY_DEPARTURE">ROADWAY DEPARTURE (TRUE/FALSE):</label>
+            <select asp-for="ROADWAY_DEPARTURE">
+                <option value="1">TRUE</option>
+                <option value="0">FALSE</option>
+            </select>
+        </div>
+
+        <div class="float-end">
+            <input class="btn btn-primary" type="submit" value="Save Crash Data" />
+        </div>
+
+    </form>
+</div>

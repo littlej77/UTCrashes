@@ -8,12 +8,12 @@ namespace UTCrashes.Components
     public class CountyViewComponent : ViewComponent
     {
         private ICrashesRepository repo { get; set; }
-
         public CountyViewComponent(ICrashesRepository temp)
         {
             repo = temp;
         }
 
+        // when county view component is called, build all county names together
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCounty = RouteData?.Values["county"];
