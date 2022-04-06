@@ -9,6 +9,10 @@ namespace UTCrashes.Models
     {
         IQueryable<Crash> crashes { get; }
         IQueryable<County> Counties { get; }
+
+        public void AddCrash(Crash c);
+        public void EditCrash(Crash c);
+        public void DeleteCrash(Crash c);
     }
 }
  

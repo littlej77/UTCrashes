@@ -22,6 +22,7 @@ namespace UTCrashes.Controllers
             _logger = logger;
             _repo = temp;
         }
+
         [HttpPost("cspreport")]
         public IActionResult CSPReport([FromBody] CspReportRequest cspReportRequest)
         {
@@ -58,13 +59,60 @@ namespace UTCrashes.Controllers
                 }
             };
 
-            //var crashes = _repo.crashes
-            //    .Where(x => x.COUNTY.COUNTY_NAME == county || county == null)
-            //    .Include(x => x.COUNTY)
-            //    .ToList();
-
             return View(x);
         }
+
+        [HttpGet]
+        public IActionResult AddCrash()
+        {
+            Crash crash = new Crash();
+
+            ViewBag.crashes = _repo.crashes.ToList();
+            ViewBag.Counties = _repo.Counties.ToList();
+
+            return View(crash);
+        }
+
+        [HttpPost]
+        public IActionResult AddCrash(Crash c)
+        {
+            if (ModelState.IsValid)
+            {
+                c.CRASH_ID = (_repo.crashes.Max(c => c.CRASH_ID)) + 1;
+                _repo.AddCrash(c);
+                return RedirectToAction("Summary");
+            }
+            else
+            {
+                ViewBag.crashes = _repo.crashes.ToList();
+                ViewBag.Counties = _repo.Counties.ToList();
+                return View(c);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult EditCrash(int crashid)
+        {
+            ViewBag.Counties = _repo.Counties.ToList();
+
+            var crash = _repo.crashes.Single(x => x.CRASH_ID == crashid);
+
+            return View("AddCrash", crash);
+        }
+
+        [HttpPost]
+        public IActionResult EditCrash(Crash c)
+        {
+            _repo.EditCrash(c);
+            return RedirectToAction("Summary");
+        }
+
+        public IActionResult DeleteCrash(Crash c)
+        {
+            _repo.DeleteCrash(c);
+            return RedirectToAction("Summary");
+        }
+
 
         public IActionResult CrashMaps()
         {
