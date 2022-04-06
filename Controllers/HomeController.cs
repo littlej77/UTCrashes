@@ -22,7 +22,11 @@ namespace UTCrashes.Controllers
             _logger = logger;
             _repo = temp;
         }
-
+        [HttpPost("cspreport")]
+        public IActionResult CSPReport([FromBody] CspReportRequest cspReportRequest)
+        {
+            _logger.LogInformation(@$"CSP Violation: {cspReportRequest.CspReport.DocumentUri},         {cspReportRequest.CspReport.BlockedUri}"); return Ok();
+        }
 
         public IActionResult Index()
         {

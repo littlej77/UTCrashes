@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,16 +30,28 @@ namespace UTCrashes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // default connection
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>() // adding roles
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 20;
+            });
+
+            //THIS IS FOR THE CONTENT SECURITY POLICY HEADER
+            services.AddControllersWithViews().AddMvcOptions(options =>
+            {
+                options.InputFormatters.OfType<SystemTextJsonInputFormatter>().First().SupportedMediaTypes.Add(
+                    new Microsoft.Net.Http.Headers.MediaTypeHeaderValue("application/csp-report")
+                );
             });
 
             services.AddDbContext<CrashesDbContext>(options =>
@@ -83,6 +96,14 @@ namespace UTCrashes
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //THIS IS FOR THE CONTENT SECURITY POLICY HEADER
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Content-Security-Policy-Report-Only",
+                    "default-src 'self'; report-uri /cspreport");
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
